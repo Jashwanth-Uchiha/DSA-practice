@@ -1,0 +1,19 @@
+class Solution {
+public:
+  int NthRoot(int N, int M) {
+      long long start=0,end=M,mid;
+      while(start<=end){
+        mid = start +(end-start)/2;
+        if(log(M)>N*log(mid)){
+            start=mid+1;
+        }
+        else if(log(M)<N*log(mid)){
+            end = mid -1;
+        }
+       if(abs(log(M)-N*log(mid))<1e-9){
+            return mid;}
+       
+      } 
+      return -1;
+    }
+};
