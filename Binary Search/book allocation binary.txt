@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int findPages(vector<int> &nums, int m)  {int total=0;
+       for(int i =0;i<nums.size();i++){
+         total =total+nums[i]; }
+       int start=0,end =total,mid;
+       while(start<end){mid=start+(end-start)/2;int student=1,ans=0;
+       for(int i=0;i<nums.size();i++){
+        if(ans+nums[i]<=mid){
+            ans=ans+nums[i]; }
+        else{
+            student ++;
+            ans=nums[i];}
+       }
+       if(student<=m){
+          end=mid; }
+       else{
+        start=mid+1; }
+         }
+       return start;}
+};
