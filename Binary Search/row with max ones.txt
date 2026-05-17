@@ -1,0 +1,24 @@
+class Solution {
+  public:   
+  int rowWithMax1s(vector < vector < int >> & mat) {int sum=0;int k=0,max=0;
+    int arr[mat.size()];
+    for(int i=0;i<mat.size();i++){sum =0;
+        for(int j=0;j<mat[0].size();j++){
+          sum=sum+mat[i][j];
+          arr[i]=sum;
+        }
+    }
+    for(int i=0;i<mat.size()-1;i++){
+        if (max<arr[i]){
+            max=arr[i];
+            k=i;
+        }
+    }
+    if(arr[k]!=0){
+        return k;
+    }
+  else { return -1;}
+   
+    
+  }
+};
