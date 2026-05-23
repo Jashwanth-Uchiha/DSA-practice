@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> leaders(vector<int>& nums) {
+      vector<int>pallavi;int count=0;
+    for(int i=0;i<nums.size()-1;i++){
+        for(int j=i+1;j<nums.size();j++){
+            if(nums[i]<nums[j]){
+                count ++;
+            }
+        }
+        if(count==0){
+            pallavi.push_back(nums[i]);
+        }
+        count=0;
+    }
+    pallavi.push_back(nums[nums.size()-1]);
+    return pallavi;
+    }
+};
