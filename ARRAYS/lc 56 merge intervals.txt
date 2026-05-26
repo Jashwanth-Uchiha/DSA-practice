@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& t) {
+       sort(t.begin(), t.end());
+vector<vector<int>> arr;
+arr.push_back({t[0][0],t[0][1]});
+for(int i=1; i<t.size(); i++){
+    if(t[i][0] <= arr.back()[1])
+        arr.back()[1] = max(arr.back()[1], t[i][1]);
+    else
+        arr.push_back(t[i]);
+}
+return arr;
+    }
+};
