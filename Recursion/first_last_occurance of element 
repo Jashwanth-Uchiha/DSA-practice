@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+int first(int arr[],int target,int start,int end){
+int mid=start+(end-start)/2;
+if(start>end){return -1;}
+if(arr[mid]==target && (mid==0 || arr[mid-1]!= target)){
+    return mid;
+}
+else if(arr[mid]<target){
+return first( arr, target,mid+1,end);
+}
+else {
+   return first( arr, target,start, mid-1);
+}
+}
+int last(int arr[],int target,int start,int end){
+    int mid=start+(end-start)/2;
+    if(start>end){
+        return -1;
+    }
+    if(arr[mid]==target && (mid==end||arr[mid+1]!=target)){
+        return mid;
+    }
+   else if(arr[mid]>target){
+        return last( arr, target,start, mid-1);
+    }
+    else {
+        return last( arr, target, mid+1,end);
+    }
+}
+int main(){
+    int nums[]={1,2,2,2,2,3,4,5,6,7,8,9};int target=2;int start=0;int end=11;
+  
+   int k=first( nums, target,start, end);
+   int l=last( nums, target,start, end);
+   cout<<k<<" "<<l<<endl;
+    return 0;
+}
