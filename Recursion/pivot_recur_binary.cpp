@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 int pivot(int nums[],int start,int end){
+    if(start>=end){return start;}
 int mid=start+(end-start)/2;
 if(nums[mid]<nums[0]){
     if(mid>0 &&nums[mid]<nums[mid-1]){
