@@ -1,0 +1,125 @@
+ // 1)Merge sort from love babbar (recursion)
+//sample code:
+#include <iostream>
+using namespace std;
+void merge(int *arr,int start,int end){
+    int mid=start+(end-start)/2;
+    
+    int length1=mid-start+1;
+    int length2=end-mid;
+    int *first=new int[length1];
+    int *second=new int[length2];
+    int mainin=start;
+    for(int i=0;i<length1;i++){
+        first[i]=arr[mainin++];
+    }
+    mainin=mid+1;
+    for(int i=0;i<length2;i++){
+        second[i]=arr[mainin++];
+    }
+    int index1=0,index2=0;mainin=start;
+    while(index1<length1&&index2<length2){
+        if(first[index1]<second[index2]){
+           arr[mainin++]=first[index1++];
+        }
+        else{
+            arr[mainin++]=second[index2++];
+        }
+    }
+    while(index1<length1){
+        arr[mainin++]=first[index1++];
+    }
+    while(index2<length2){
+        arr[mainin++]=second[index2++];
+    }
+
+}
+void mergesort(int *arr,int start,int end){
+    if(start>=end){
+        return;
+    }
+    int mid=start+(end-start)/2;
+    mergesort(arr,start,mid);
+    mergesort(arr,mid+1,end);
+    merge(arr,start,end);
+}
+int main(){
+    int array[]={1,4,4,5,37,2};
+    int start=0;int end=5;
+    mergesort(array,start,end);
+    for(int i=0;i<6;i++){
+        cout<<array[i]<<endl;
+    }
+    return 0;
+}
+// 2) learnt quick sort (recursion)
+//sample code:
+#include<iostream>
+using namespace std;
+
+int partition(int arr[],int start,int end){
+    int pivot=arr[start];
+    int count=0;
+    for(int i=start+1;i<=end;i++){
+        if(arr[i]<=pivot) count++;
+    }
+
+    swap(arr[start+count],arr[start]);
+
+    int i=start,j=end;
+    int p_index=start+count;
+    while(i<p_index &&j>p_index){
+        while(arr[i]<=pivot){
+            i++;
+        }
+        while(arr[j]>pivot){
+            j--;
+        }
+        if(i<p_index &&j>p_index){
+            swap(arr[i],arr[j]);
+        }
+    }
+    return p_index;
+
+}
+
+void quicksort(int arr[],int start,int end){
+    if(start>=end){
+        return ;
+    }
+    int p=partition(arr,start,end);
+    quicksort(arr,start,p-1);
+    quicksort(arr,p+1,end);
+}
+
+int main(){
+    int array[]={1,45,32,67,88,98,47,98};
+    int n=8;
+    quicksort(array,0,n-1);
+    for(int i=0;i<n;i++){
+        cout<<array[i]<<endl;
+    }
+    return 0;
+}
+// 3) leet code 78 question (subsets)
+class Solution {
+    private:
+    void solve(vector<int> nums,vector<int> output,int index,vector<vector<int>>& ans){
+   if(index>=nums.size()){
+    ans.push_back(output);
+    return;
+   }
+   solve(nums,output,index+1,ans);
+   int p=nums[index];
+   output.push_back(p);
+   solve(nums,output,index+1,ans);
+    }
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int> output;
+        vector<vector<int>> ans;
+        int index=0;
+        solve(nums,output,index,ans);
+        return ans;
+    }
+};
