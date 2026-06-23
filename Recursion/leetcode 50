@@ -1,0 +1,26 @@
+class Solution {
+    double power(double x, long long n){
+      if(n>=0){
+        if(n==0){
+            return 1;
+        }
+        if(n%2){
+            double half=power(x,n/2);
+            return x* half*half;
+
+        }
+        else{
+            double half=power(x,n/2);
+            return half*half;
+        }}
+        
+        else{
+            return 1/power(x,-(long long)n);
+        }
+    }
+public:
+    double myPow(double x, int n) {
+     double ans=power(x,n);
+     return ans;
+    }
+};

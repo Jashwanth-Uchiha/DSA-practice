@@ -1,0 +1,26 @@
+class Solution {
+    private:
+    void solve(vector<string>& ans,string s,int index,int n){
+        if(index>=n){
+            ans.push_back(s);
+            return ;
+        }
+       //taking zero
+         s.push_back('0');
+         solve(ans,s,index+1,n);
+         s.pop_back();
+       // taking 1
+         s.push_back('1');
+         solve(ans,s,index+1,n);
+         s.pop_back();
+    }
+  public:
+    vector<string> binstr(int n) {
+      vector<string> ans;
+      string s;
+      int index=0;
+      solve(ans,s,index,n);
+      return ans;
+        
+    }
+};
