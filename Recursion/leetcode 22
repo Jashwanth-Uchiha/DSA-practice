@@ -1,0 +1,28 @@
+class Solution {
+    private:
+    void solve(int left ,int right,string output,vector<string> & ans,int n){
+        if(left==n && right==n){
+            ans.push_back(output);
+            return ;
+        }
+       if(left<n){
+        output.push_back('(');
+        solve(left+1,right,output,ans,n);
+        output.pop_back();
+       }
+  if(right<left){
+    output.push_back(')');
+    solve(left,right+1,output,ans,n);
+        output.pop_back();
+
+  }
+    }
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> ans;
+        string output="";
+      int right=0;int left=0;
+      solve(left,right,output,ans,n);
+      return ans;
+    }
+};

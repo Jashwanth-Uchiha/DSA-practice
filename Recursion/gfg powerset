@@ -1,0 +1,29 @@
+class Solution {
+    private:
+    void solve(string s,int index,string output,vector<string>& ans){
+        if(index>=s.length()){
+            ans.push_back(output);
+            return ;
+        }
+        
+        // not taking that element;
+        solve(s,index+1,output,ans);
+        //taking that element
+        output.push_back(s[index]);
+        solve(s,index+1,output,ans);
+        output.pop_back();
+        
+        
+    }
+    
+  public:
+    vector<string> powerSet(string &s) {
+        vector<string> ans;
+        string output="";
+        int index=0;
+        solve(s,index,output,ans);
+        sort(ans.begin(),ans.end());
+        return ans;
+        
+    }
+};
