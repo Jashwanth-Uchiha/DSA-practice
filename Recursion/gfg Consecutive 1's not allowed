@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int countStrings(long long n) {
+        
+        long long a = 1;
+        long long b = 1;
+        
+        for (int i = 2; i <= n; i++) {
+            long long prev_a = a;
+            a = a + b;
+            b = prev_a;
+        }
+        
+        return a + b;
+    }
+};
