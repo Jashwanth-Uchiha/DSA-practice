@@ -1,0 +1,124 @@
+// leet code 125
+class Solution
+{
+public:
+    bool isPalindrome(string s)
+    {
+        int i = 0, j = s.length() - 1;
+
+        while (i <= j)
+        {
+
+            if (!isalnum(s[i]))
+            {
+                i++;
+                continue;
+            }
+
+            if (!isalnum(s[j]))
+            {
+                j--;
+                continue;
+            }
+
+            if (tolower(s[i]) != tolower(s[j]))
+                return false;
+
+            i++;
+            j--;
+        }
+        return true;
+    }
+};
+// leet code 509
+class Solution
+{
+private:
+    int ans(int n)
+    {
+        if (n == 1)
+        {
+            return 1;
+        }
+        if (n == 0)
+        {
+            return 0;
+        }
+        return ans(n - 1) + ans(n - 2);
+    }
+
+public:
+    int fib(int n)
+    {
+        int output = ans(n);
+        return output;
+    }
+};
+// gfg factorial
+class Solution {
+    private:
+    int fact(int n ){
+        if(n==0){
+            return 1;
+        }
+        return n*fact(n-1);
+    }
+  public:
+    int factorial(int n) {
+       
+        int nas=fact(n);
+        return nas;
+    }
+};
+// gfg sum of n natural numbers using recursion
+#include <iostream>
+using namespace std;
+int recursum(int n){
+    if(n==0){
+        return 0;
+    }
+    return n+recursum(n-1);
+}
+
+int main() {
+    int n;
+    cin >> n;
+ int ans=recursum(n);
+    
+cout<< ans;
+    return 0;
+}
+// print from n to 1 using recursion gfg
+class Solution {
+    private:
+    void prints(int n ){
+        if(n==0){
+            return ;
+        }
+        cout<<n<<" ";
+        prints(n-1)
+    }
+    
+  public:
+    void printNos(int n) {
+       prints(n);
+        
+    }
+};
+// print from 1 to n using recursion 
+class Solution {
+    private:
+    void prints(int n ){
+        if(n==0){
+            return ;
+        }
+      
+        prints(n-1);
+         cout<<n<<" ";
+    }
+  public:
+    void printTillN(int n) {
+        prints(n);
+        
+    }
+};
