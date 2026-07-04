@@ -1,0 +1,31 @@
+// leet code 796  rotate string
+class Solution
+{
+public:
+    bool rotateString(string s, string goal)
+    {
+        if (s.length() != goal.length())
+        {
+            return false;
+        }
+        string n = s + s;
+        int count = 0;
+        int k = n.length();
+        for (int i = 0; i < k - goal.length(); i++)
+        {
+            for (int j = i; j < i + goal.length(); j++)
+            {
+                if (n[j] == goal[j - i])
+                {
+                    count++;
+                }
+                if (count == goal.length())
+                {
+                    return true;
+                }
+            }
+            count = 0;
+        }
+        return false;
+    }
+};
