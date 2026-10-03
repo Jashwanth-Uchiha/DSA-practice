@@ -8,7 +8,7 @@ private:
             return;
         }
         else {
-            arr[index] = 0;
+            arr[index] =  0;
             recur(arr, index - 1);   
         }
     }
