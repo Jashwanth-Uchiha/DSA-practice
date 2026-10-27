@@ -11,35 +11,43 @@ public:
     }
 };*/
 
+
 class Solution {
   public:
     vector<int> diagonal(Node *root) {
-      vector<int> ans;
-      if(root==NULL){
-          return ans;
-      }
-      
-     queue<Node*>q;
-     q.push(root);
-      while(!q.empty()){
-          
-          Node*curr=q.front();
-          q.pop();
-          while(curr!=NULL){
-              ans.push_back(curr->data);
-              if(curr->left){
-                  q.push(curr->left);
-              }
-              curr=curr->right;
-          }
-          
-      }
-      
-      
-      
-      
-     
-      return ans;
-        
+        vector<int> ans;
+
+        if (root == NULL) {
+            return ans;
+        }
+
+        map<int, vector<int>> mp;
+        queue<pair<Node*, int>> q;
+
+        q.push({root, 0});
+
+        while (!q.empty()) {
+            Node* curr = q.front().first;
+            int d = q.front().second;
+            q.pop();
+
+            while (curr != NULL) {
+                mp[d].push_back(curr->data);
+
+                if (curr->left) {
+                    q.push({curr->left, d + 1});
+                }
+
+                curr = curr->right;
+            }
+        }
+
+        for (auto it : mp) {
+            for (auto val : it.second) {
+                ans.push_back(val);
+            }
+        }
+
+        return ans;
     }
 };
